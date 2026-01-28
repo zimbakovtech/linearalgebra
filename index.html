@@ -25,6 +25,7 @@
             font-size: 3em;
             margin-bottom: 0.5em;
             background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            background-clip: text;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -40,6 +41,24 @@
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
             margin-top: 40px;
+        }
+
+        /* Desktop: keep the same card width and fit 3 in a row */
+        @media (min-width: 1000px) {
+            .home-container {
+                max-width: 1100px;
+            }
+
+            .cards-grid {
+                grid-template-columns: repeat(3, minmax(300px, 1fr));
+            }
+        }
+
+        /* Phone: stack cards */
+        @media (max-width: 600px) {
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
         }
 
         .card {
@@ -116,6 +135,11 @@
                 <div class="icon">🔢</div>
                 <h2>Втор Колоквиум</h2>
                 <p>Детерминанти, Векторски простори, Сопствени вредности</p>
+            </a>
+            <a href="problems.html" class="card">
+                <div class="icon">🧩</div>
+                <h2>Испитни задачи</h2>
+                <p>Збирка на испитни задачи (слики) во прегледна галерија</p>
             </a>
         </div>
     </div>

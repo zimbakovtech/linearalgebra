@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="mk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Испитни задачи</title>
+
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+</head>
+<body data-page="problems">
+    <div class="container" data-no-toc>
+        <div class="page-header">
+            <div>
+                <h1 class="title">🧩 Испитни задачи</h1>
+                <p class="subtitle">Галерија со сите испитни задачи (слики). Кликни на слика за преглед.</p>
+            </div>
+
+            <div class="page-actions">
+                <a class="btn" href="index.html">← Почетна</a>
+            </div>
+        </div>
+
+        <div id="problems-grid" class="gallery-grid" aria-label="Испитни задачи"></div>
+    </div>
+
+    <div id="lightbox" class="lightbox-overlay" aria-hidden="true">
+        <div class="lightbox" role="dialog" aria-modal="true" aria-label="Преглед на слика">
+            <div class="lightbox-toolbar">
+                <div id="lightbox-title" class="lightbox-title">&nbsp;</div>
+                <div class="lightbox-actions">
+                    <a id="lightbox-open" class="lightbox-btn" href="#" target="_blank" rel="noopener noreferrer">Отвори</a>
+                    <button id="lightbox-prev" class="lightbox-btn" type="button" aria-label="Претходна">←</button>
+                    <button id="lightbox-next" class="lightbox-btn" type="button" aria-label="Следна">→</button>
+                    <button id="lightbox-close" class="lightbox-btn" type="button" aria-label="Затвори">✕</button>
+                </div>
+            </div>
+            <div class="lightbox-body">
+                <img id="lightbox-img" alt="" src="" />
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const imageFiles = [
+                '1.jpg',
+                '2.jpg',
+                '3.jpg',
+                '4.jpg',
+                '5.jpg',
+                '6.jpg',
+                '7.jpg',
+                '8.png',
+                '9.png',
+                '10.jpg',
+                '11.jpg',
+                '12.jpg'
+            ];
+
+            const grid = document.getElementById('problems-grid');
+            const lightboxOverlay = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            const lightboxTitle = document.getElementById('lightbox-title');
+            const lightboxOpen = document.getElementById('lightbox-open');
+            const btnPrev = document.getElementById('lightbox-prev');
+            const btnNext = document.getElementById('lightbox-next');
+            const btnClose = document.getElementById('lightbox-close');
+
+            let currentIndex = 0;
+
+            const getLabelForFile = (file) => {
+                const base = file.split('.')[0];
+                const num = Number.parseInt(base, 10);
+                return Number.isFinite(num) ? `Задача ${num}` : file;
+            };
+
+            const getSrcForFile = (file) => `images/problems/${file}`;
+
+            const openLightbox = (index) => {
+                currentIndex = (index + imageFiles.length) % imageFiles.length;
+                const file = imageFiles[currentIndex];
+                const src = getSrcForFile(file);
+                const label = getLabelForFile(file);
+
+                lightboxImg.src = src;
+                lightboxImg.alt = label;
+                lightboxTitle.textContent = label;
+                lightboxOpen.href = src;
+
+                lightboxOverlay.classList.add('open');
+                lightboxOverlay.setAttribute('aria-hidden', 'false');
+
+                btnClose.focus();
+            };
+
+            const closeLightbox = () => {
+                lightboxOverlay.classList.remove('open');
+                lightboxOverlay.setAttribute('aria-hidden', 'true');
+
+                lightboxImg.src = '';
+                lightboxImg.alt = '';
+                lightboxTitle.textContent = '';
+                lightboxOpen.href = '#';
+            };
+
+            const goPrev = () => openLightbox(currentIndex - 1);
+            const goNext = () => openLightbox(currentIndex + 1);
+
+            imageFiles.forEach((file, index) => {
+                const href = getSrcForFile(file);
+                const label = getLabelForFile(file);
+
+                const item = document.createElement('a');
+                item.className = 'gallery-item';
+                item.href = href;
+                item.setAttribute('aria-label', `${label} (клик за преглед)`);
+
+                item.addEventListener('click', (e) => {
+                    // Allow browser default behavior for new-tab gestures
+                    if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+                    e.preventDefault();
+                    openLightbox(index);
+                });
+
+                const img = document.createElement('img');
+                img.loading = 'lazy';
+                img.decoding = 'async';
+                img.src = href;
+                img.alt = label;
+
+                const caption = document.createElement('div');
+                caption.className = 'gallery-caption';
+                caption.textContent = label;
+
+                item.appendChild(img);
+                item.appendChild(caption);
+                grid.appendChild(item);
+            });
+
+            btnClose.addEventListener('click', closeLightbox);
+            btnPrev.addEventListener('click', goPrev);
+            btnNext.addEventListener('click', goNext);
+
+            lightboxOverlay.addEventListener('click', (e) => {
+                if (e.target === lightboxOverlay) closeLightbox();
+            });
+
+            document.addEventListener('keydown', (e) => {
+                if (!lightboxOverlay.classList.contains('open')) return;
+                if (e.key === 'Escape') closeLightbox();
+                if (e.key === 'ArrowLeft') goPrev();
+                if (e.key === 'ArrowRight') goNext();
+            });
+        });
+    </script>
+</body>
+</html>

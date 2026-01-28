@@ -55,11 +55,13 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Generate Table of Contents
+    // Generate Table of Contents (skip when container opts out)
     const container = document.querySelector('.container');
     const headings = document.querySelectorAll('h1, h2, h3, h4');
     
-    if (container && headings.length > 0) {
+    const noTocPage = document.body?.dataset?.page === 'problems';
+
+    if (container && headings.length > 0 && !container.hasAttribute('data-no-toc') && !noTocPage) {
         const tocContainer = document.createElement('div');
         tocContainer.className = 'toc-container';
         
