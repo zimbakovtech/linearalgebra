@@ -7,20 +7,21 @@
 
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
+    <script src="enhanced-features.js"></script>
 </head>
 <body data-page="problems">
-    <div class="container" data-no-toc>
-        <div class="page-header">
-            <div>
-                <h1 class="title">🧩 Испитни задачи</h1>
-                <p class="subtitle">Галерија со сите испитни задачи (слики). Кликни на слика за преглед.</p>
-            </div>
-
-            <div class="page-actions">
-                <a class="btn" href="index.html">← Почетна</a>
-            </div>
+    <nav class="study-nav">
+        <div class="nav-left">
+            <a href="index.html" class="nav-btn">← Почетна</a>
+            <h2 class="nav-title">Испитни задачи</h2>
         </div>
-
+        <div class="nav-right">
+            <a href="first_midterm.html" class="nav-btn">Прв Колоквиум</a>
+            <a href="second_midterm.html" class="nav-btn">Втор Колоквиум</a>
+            <a href="problems.html" class="nav-btn">Задачи</a>
+        </div>
+    </nav>
+    <div class="container" data-no-toc>
         <div id="problems-grid" class="gallery-grid" aria-label="Испитни задачи"></div>
     </div>
 
@@ -29,6 +30,9 @@
             <div class="lightbox-toolbar">
                 <div id="lightbox-title" class="lightbox-title">&nbsp;</div>
                 <div class="lightbox-actions">
+                    <button id="lightbox-zoom-out" class="lightbox-btn" type="button" title="Зумирај надвор">−</button>
+                    <button id="lightbox-zoom-in" class="lightbox-btn" type="button" title="Зумирај внатре">+</button>
+                    <button id="lightbox-reset" class="lightbox-btn" type="button" title="Ресетирај зум">⟳</button>
                     <a id="lightbox-open" class="lightbox-btn" href="#" target="_blank" rel="noopener noreferrer">Отвори</a>
                     <button id="lightbox-prev" class="lightbox-btn" type="button" aria-label="Претходна">←</button>
                     <button id="lightbox-next" class="lightbox-btn" type="button" aria-label="Следна">→</button>

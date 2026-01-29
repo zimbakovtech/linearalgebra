@@ -98,14 +98,4 @@ document.addEventListener('DOMContentLoaded', () => {
 
         tocContainer.appendChild(tocList);
     }
-
-    // ==== STUDY PAGE FEATURES ====
-    if (document.body.dataset.page === 'study' && typeof initializeStudyFeatures === 'function') {
-        initializeStudyFeatures();
-    }
-
-    // ==== PROBLEMS PAGE FEATURES ====
-    if (document.body.dataset.page === 'problems' && typeof initializeProblemsPage === 'function') {
-        initializeProblemsPage();
-    }
 });
