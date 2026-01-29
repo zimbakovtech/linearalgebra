@@ -1,6 +1,6 @@
 :root {
     /* Light Theme Variables */
-    --bg-color: #efefef;
+    --bg-color: #f8f8f8;
     --text-color: #333333;
     --heading-color: #0a0a0a;
     --primary-color: #0066cc;
@@ -381,24 +381,14 @@ li::marker {
 
 /* UI Elements managed by JS */
 .theme-toggle-btn {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    background-color: var(--card-bg);
-    border: 1px solid var(--border-color);
-    color: var(--text-color);
-    padding: 10px;
-    border-radius: 50%;
     width: 44px;
-    height: 44px;
-    display: flex;
+    height: 38px;
+    padding: 0;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 2px 5px var(--shadow-color);
-    cursor: pointer;
-    z-index: 1000;
-    transition: all 0.2s ease;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
+    line-height: 1;
 }
 
 .theme-toggle-btn:hover {
@@ -476,11 +466,6 @@ body[data-page="problems"] .toc-container {
         font-size: 2em;
     }
 
-    .theme-toggle-btn {
-        top: auto;
-        bottom: 20px;
-        right: 20px;
-    }
 }
 
 /* Print Styles */

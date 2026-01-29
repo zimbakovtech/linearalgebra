@@ -15,10 +15,17 @@ window.MathJax = {
 document.addEventListener('DOMContentLoaded', () => {
     // Theme Toggle Logic
     const themeToggleBtn = document.createElement('button');
-    themeToggleBtn.className = 'theme-toggle-btn';
+    themeToggleBtn.className = 'nav-btn theme-toggle-btn';
     themeToggleBtn.setAttribute('aria-label', 'Toggle Dark Mode');
+    themeToggleBtn.type = 'button';
     themeToggleBtn.innerHTML = '🌓';
-    document.body.appendChild(themeToggleBtn);
+
+    const navRight = document.querySelector('.study-nav .nav-right');
+    if (navRight) {
+        navRight.appendChild(themeToggleBtn);
+    } else {
+        document.body.appendChild(themeToggleBtn);
+    }
 
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme === 'dark') {
