@@ -55,6 +55,33 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // Header Hide/Show on Scroll
+    const header = document.querySelector('.study-nav');
+    if (header) {
+        let lastScrollY = window.scrollY;
+        let ticking = false;
+
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                window.requestAnimationFrame(() => {
+                    const currentScrollY = window.scrollY;
+                    
+                    if (currentScrollY > lastScrollY && currentScrollY > 100) {
+                        // Scrolling down
+                        header.classList.add('hidden');
+                    } else {
+                        // Scrolling up
+                        header.classList.remove('hidden');
+                    }
+                    
+                    lastScrollY = currentScrollY;
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        });
+    }
+
     // Generate Table of Contents (skip when container opts out)
     const container = document.querySelector('.container');
     const headings = document.querySelectorAll('h1, h2, h3, h4');

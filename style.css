@@ -574,6 +574,12 @@ body[data-page="problems"] .toc-container {
     align-items: center;
     box-shadow: 0 2px 8px var(--shadow-color);
     backdrop-filter: blur(10px);
+    transition: transform 0.3s ease-in-out;
+    transform: translateY(0);
+}
+
+.study-nav.hidden {
+    transform: translateY(-100%);
 }
 
 .nav-left {
