@@ -13,10 +13,12 @@ window.MathJax = {
 };
 
 document.addEventListener('DOMContentLoaded', () => {
+    const isDataWarehousesPage = /(^|\/)data_warehouses\.html$/i.test(window.location.pathname);
+
     // Theme Toggle Logic
     const themeToggleBtn = document.createElement('button');
     themeToggleBtn.className = 'nav-btn theme-toggle-btn';
-    themeToggleBtn.setAttribute('aria-label', 'Toggle Dark Mode');
+    themeToggleBtn.setAttribute('aria-label', 'Промени тема');
     themeToggleBtn.type = 'button';
     themeToggleBtn.innerHTML = '🌓';
 
@@ -44,7 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const backToTopBtn = document.createElement('button');
     backToTopBtn.className = 'back-to-top';
     backToTopBtn.innerHTML = '⬆';
-    backToTopBtn.setAttribute('aria-label', 'Back to Top');
+    backToTopBtn.setAttribute('aria-label', 'Нагоре');
     document.body.appendChild(backToTopBtn);
 
     window.addEventListener('scroll', () => {
@@ -100,7 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
         tocContainer.className = 'toc-container';
         
         const tocTitle = document.createElement('h3');
-        tocTitle.textContent = 'Содржина';
+        tocTitle.textContent = isDataWarehousesPage ? 'Table of Contents' : 'Содржина';
         tocContainer.appendChild(tocTitle);
 
         const tocList = document.createElement('ul');

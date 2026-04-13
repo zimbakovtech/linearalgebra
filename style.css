@@ -588,6 +588,10 @@ body[data-page="problems"] .toc-container {
     font-weight: 600;
 }
 
+.nav-back-btn {
+    font-weight: 600;
+}
+
 @media (max-width: 600px) {
     .nav-title {
         font-size: 1em;
@@ -616,6 +620,62 @@ body[data-page="problems"] .toc-container {
     border-color: var(--primary-color);
     transform: translateY(-1px);
     text-decoration: none;
+}
+
+@media (max-width: 768px) {
+    .study-nav {
+        padding: 10px 12px;
+        gap: 8px;
+    }
+
+    .nav-left {
+        flex: 1 1 auto;
+        min-width: 0;
+        flex-wrap: nowrap;
+        gap: 8px;
+    }
+
+    .nav-title {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        font-size: 1rem;
+    }
+
+    .nav-right {
+        flex-wrap: nowrap;
+        gap: 6px;
+    }
+
+    .nav-right .nav-link-desktop {
+        display: none;
+    }
+
+    .nav-btn {
+        padding: 7px 10px;
+        font-size: 0.88em;
+    }
+
+    .theme-toggle-btn {
+        width: 40px;
+        height: 36px;
+    }
+}
+
+@media (max-width: 520px) {
+    .nav-back-btn {
+        font-size: 0;
+        padding: 7px 9px;
+        min-width: 36px;
+        justify-content: center;
+        gap: 0;
+    }
+
+    .nav-back-btn::before {
+        content: '←';
+        font-size: 1rem;
+        line-height: 1;
+    }
 }
 
 /* Side Panels */
