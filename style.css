@@ -396,6 +396,12 @@ li::marker {
     background-color: var(--secondary-color);
 }
 
+.language-toggle-btn {
+    min-width: 46px;
+    justify-content: center;
+    font-weight: 600;
+}
+
 .toc-container {
     background-color: var(--secondary-color);
     padding: 1.5rem;
@@ -659,6 +665,12 @@ body[data-page="problems"] .toc-container {
     .theme-toggle-btn {
         width: 40px;
         height: 36px;
+    }
+
+    .language-toggle-btn {
+        min-width: 42px;
+        padding-left: 8px;
+        padding-right: 8px;
     }
 }
 

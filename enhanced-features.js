@@ -4,6 +4,24 @@
 // ==== STUDY FEATURES INITIALIZATION ====
 function initializeStudyFeatures() {
     const pageId = window.location.pathname;
+    const isEnglishUi = (document.documentElement.getAttribute('lang') || 'mk')
+        .toLowerCase()
+        .startsWith('en');
+    const uiText = isEnglishUi
+        ? {
+            minCharsHint: 'Enter at least 2 characters...',
+            paragraphLabel: 'Paragraph',
+            noResults: 'No results',
+            noBookmarks: 'No bookmarked sections',
+            minutesSuffix: 'min'
+        }
+        : {
+            minCharsHint: 'Внесете барем 2 карактери...',
+            paragraphLabel: 'Параграф',
+            noResults: 'Нема резултати',
+            noBookmarks: 'Нема обележани секции',
+            minutesSuffix: 'мин'
+        };
 
     // Panel Toggle Logic
     function initPanel(toggleId, panelId) {
@@ -47,7 +65,7 @@ function initializeStudyFeatures() {
             searchResults.innerHTML = '';
 
             if (query.length < 2) {
-                searchResults.innerHTML = '<p class="panel-hint">Внесете барем 2 карактери...</p>';
+                searchResults.innerHTML = `<p class="panel-hint">${uiText.minCharsHint}</p>`;
                 return;
             }
 
@@ -72,14 +90,14 @@ function initializeStudyFeatures() {
                     const prevHeading = getPreviousHeading(p);
                     results.push({
                         element: p,
-                        title: prevHeading ? prevHeading.textContent : 'Параграф',
+                        title: prevHeading ? prevHeading.textContent : uiText.paragraphLabel,
                         preview: text.substring(0, 100) + '...'
                     });
                 }
             });
 
             if (results.length === 0) {
-                searchResults.innerHTML = '<p class="panel-hint">Нема резултати</p>';
+                searchResults.innerHTML = `<p class="panel-hint">${uiText.noResults}</p>`;
                 return;
             }
 
@@ -126,7 +144,7 @@ function initializeStudyFeatures() {
         bookmarksList.innerHTML = '';
 
         if (bookmarks.length === 0) {
-            bookmarksList.innerHTML = '<p class="panel-hint">Нема обележани секции</p>';
+            bookmarksList.innerHTML = `<p class="panel-hint">${uiText.noBookmarks}</p>`;
             return;
         }
 
@@ -260,7 +278,7 @@ function initializeStudyFeatures() {
         if (totalTimeEl) {
             const totalSecs = parseInt(localStorage.getItem(totalTimeKey) || '0');
             const mins = Math.floor(totalSecs / 60);
-            totalTimeEl.textContent = `${mins} мин`;
+            totalTimeEl.textContent = `${mins} ${uiText.minutesSuffix}`;
         }
     }
 
